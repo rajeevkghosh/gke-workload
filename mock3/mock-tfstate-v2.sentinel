@@ -1,0 +1,30 @@
+terraform_version = "1.1.0"
+
+outputs = {}
+
+resources = {
+	"google_project.project": {
+		"address":        "google_project.project",
+		"depends_on":     [],
+		"deposed_key":    "",
+		"index":          null,
+		"mode":           "data",
+		"module_address": "",
+		"name":           "project",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"tainted":        false,
+		"type":           "google_project",
+		"values": {
+			"auto_create_network": null,
+			"billing_account":     null,
+			"folder_id":           "299940155397",
+			"id":                  "projects/airline1-sabre-wolverine",
+			"labels":              {},
+			"name":                "airline1-sabre-wolverine",
+			"number":              "680501254856",
+			"org_id":              "",
+			"project_id":          "airline1-sabre-wolverine",
+			"skip_delete":         null,
+		},
+	},
+}

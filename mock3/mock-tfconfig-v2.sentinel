@@ -1,0 +1,130 @@
+import "strings"
+
+providers = {
+	"google": {
+		"alias": "",
+		"config": {
+			"project": {
+				"constant_value": "airline1-sabre-wolverine",
+			},
+		},
+		"module_address":      "",
+		"name":                "google",
+		"provider_config_key": "google",
+		"version_constraint":  "",
+	},
+}
+
+resources = {
+	"data.google_project.project": {
+		"address": "data.google_project.project",
+		"config": {
+			"project_id": {
+				"constant_value": "airline1-sabre-wolverine",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "project",
+		"provider_config_key": "google",
+		"provisioners":        [],
+		"type":                "google_project",
+	},
+	"google_container_cluster.primary": {
+		"address": "google_container_cluster.primary",
+		"config": {
+			"datapath_provider": {
+				"constant_value": "ADVANCED_DATAPATH",
+			},
+			"initial_node_count": {
+				"constant_value": 3,
+			},
+			"ip_allocation_policy": [
+				{},
+			],
+			"location": {
+				"constant_value": "us-central1-a",
+			},
+			"master_authorized_networks_config": [
+				{
+					"cidr_blocks": [
+						{
+							"cidr_block": {
+								"constant_value": "192.168.10.35/32",
+							},
+						},
+					],
+				},
+			],
+			"name": {
+				"constant_value": "marcellus-wallace",
+			},
+			"node_config": [
+				{
+					"labels": {
+						"constant_value": {
+							"foo": "bar",
+						},
+					},
+					"oauth_scopes": {
+						"constant_value": [
+							"https://www.googleapis.com/auth/cloud-platform",
+						],
+					},
+					"tags": {
+						"constant_value": [
+							"foo",
+							"bar",
+						],
+					},
+				},
+			],
+			"release_channel": [
+				{
+					"channel": {
+						"constant_value": "STABLE",
+					},
+				},
+			],
+			"timeouts": {
+				"constant_value": null,
+			},
+			"workload_identity_config": [
+				{
+					"workload_pool": {
+						"constant_value": "abc.svc.id.goog",
+					},
+				},
+			],
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "primary",
+		"provider_config_key": "google",
+		"provisioners":        [],
+		"type":                "google_container_cluster",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

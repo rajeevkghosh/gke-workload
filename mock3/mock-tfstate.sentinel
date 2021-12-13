@@ -1,0 +1,62 @@
+import "strings"
+import "types"
+
+outputs = {}
+
+_modules = {
+	"root": {
+		"data": {
+			"google_project": {
+				"project": {
+					0: {
+						"attr": {
+							"auto_create_network": null,
+							"billing_account":     null,
+							"folder_id":           "299940155397",
+							"id":                  "projects/airline1-sabre-wolverine",
+							"labels":              {},
+							"name":                "airline1-sabre-wolverine",
+							"number":              "680501254856",
+							"org_id":              "",
+							"project_id":          "airline1-sabre-wolverine",
+							"skip_delete":         null,
+						},
+						"depends_on": [],
+						"id":         "projects/airline1-sabre-wolverine",
+						"tainted":    false,
+					},
+				},
+			},
+		},
+		"path":      [],
+		"resources": {},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.1.0"
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources

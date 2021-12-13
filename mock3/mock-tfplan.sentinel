@@ -1,0 +1,599 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {},
+		"path": [],
+		"resources": {
+			"google_container_cluster": {
+				"primary": {
+					0: {
+						"applied": {
+							"datapath_provider":           "ADVANCED_DATAPATH",
+							"description":                 null,
+							"enable_autopilot":            null,
+							"enable_binary_authorization": false,
+							"enable_kubernetes_alpha":     false,
+							"enable_legacy_abac":          false,
+							"enable_shielded_nodes":       true,
+							"enable_tpu":                  null,
+							"initial_node_count":          3,
+							"ip_allocation_policy": [
+								{},
+							],
+							"location":           "us-central1-a",
+							"maintenance_policy": [],
+							"master_authorized_networks_config": [
+								{
+									"cidr_blocks": [
+										{
+											"cidr_block":   "192.168.10.35/32",
+											"display_name": "",
+										},
+									],
+								},
+							],
+							"min_master_version": null,
+							"name":               "marcellus-wallace",
+							"network":            "default",
+							"node_config": [
+								{
+									"gcfs_config": [],
+									"labels": {
+										"foo": "bar",
+									},
+									"min_cpu_platform": null,
+									"node_group":       null,
+									"oauth_scopes": [
+										"https://www.googleapis.com/auth/cloud-platform",
+									],
+									"preemptible": false,
+									"tags": [
+										"foo",
+										"bar",
+									],
+								},
+							],
+							"private_cluster_config": [],
+							"release_channel": [
+								{
+									"channel": "STABLE",
+								},
+							],
+							"remove_default_node_pool":     null,
+							"resource_labels":              null,
+							"resource_usage_export_config": [],
+							"timeouts": {
+								"create": "30m",
+								"delete": null,
+								"read":   null,
+								"update": "40m",
+							},
+							"vertical_pod_autoscaling": [],
+							"workload_identity_config": [
+								{
+									"workload_pool": "abc.svc.id.goog",
+								},
+							],
+						},
+						"destroy": false,
+						"diff": {
+							"addons_config.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"authenticator_groups_config.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cluster_autoscaling.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cluster_ipv4_cidr": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"confidential_nodes.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"database_encryption.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"datapath_provider": {
+								"computed": false,
+								"new":      "ADVANCED_DATAPATH",
+								"old":      "",
+							},
+							"default_max_pods_per_node": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"default_snat_status.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_autopilot": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_binary_authorization": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_intranode_visibility": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"enable_kubernetes_alpha": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_legacy_abac": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"enable_shielded_nodes": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"enable_tpu": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"endpoint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"initial_node_count": {
+								"computed": false,
+								"new":      "3",
+								"old":      "",
+							},
+							"ip_allocation_policy.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"ip_allocation_policy.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ip_allocation_policy.0.cluster_ipv4_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ip_allocation_policy.0.cluster_secondary_range_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ip_allocation_policy.0.services_ipv4_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"ip_allocation_policy.0.services_secondary_range_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"label_fingerprint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"location": {
+								"computed": false,
+								"new":      "us-central1-a",
+								"old":      "",
+							},
+							"logging_config.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"logging_service": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"maintenance_policy.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"master_auth.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"master_authorized_networks_config.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"master_authorized_networks_config.0.%": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"master_authorized_networks_config.0.cidr_blocks.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"master_authorized_networks_config.0.cidr_blocks.0.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"master_authorized_networks_config.0.cidr_blocks.0.cidr_block": {
+								"computed": false,
+								"new":      "192.168.10.35/32",
+								"old":      "",
+							},
+							"master_authorized_networks_config.0.cidr_blocks.0.display_name": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"master_version": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"min_master_version": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"monitoring_config.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"monitoring_service": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"name": {
+								"computed": false,
+								"new":      "marcellus-wallace",
+								"old":      "",
+							},
+							"network": {
+								"computed": false,
+								"new":      "default",
+								"old":      "",
+							},
+							"network_policy.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"networking_mode": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"node_config.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.disk_size_gb": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.disk_type": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.gcfs_config.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"node_config.0.guest_accelerator": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.image_type": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.labels.%": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"node_config.0.labels.foo": {
+								"computed": false,
+								"new":      "bar",
+								"old":      "",
+							},
+							"node_config.0.local_ssd_count": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.machine_type": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.metadata": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.min_cpu_platform": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.node_group": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.oauth_scopes.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"node_config.0.oauth_scopes.0": {
+								"computed": false,
+								"new":      "https://www.googleapis.com/auth/cloud-platform",
+								"old":      "",
+							},
+							"node_config.0.preemptible": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"node_config.0.service_account": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.shielded_instance_config": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.tags.#": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"node_config.0.tags.0": {
+								"computed": false,
+								"new":      "foo",
+								"old":      "",
+							},
+							"node_config.0.tags.1": {
+								"computed": false,
+								"new":      "bar",
+								"old":      "",
+							},
+							"node_config.0.taint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_config.0.workload_metadata_config": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_locations.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_pool.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"node_version": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"operation": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"private_cluster_config.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"private_ipv6_google_access": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"project": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"release_channel.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"release_channel.0.%": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"release_channel.0.channel": {
+								"computed": false,
+								"new":      "STABLE",
+								"old":      "",
+							},
+							"remove_default_node_pool": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"resource_labels": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"resource_usage_export_config.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"self_link": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"services_ipv4_cidr": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"subnetwork": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts.%": {
+								"computed": false,
+								"new":      "4",
+								"old":      "",
+							},
+							"timeouts.create": {
+								"computed": false,
+								"new":      "30m",
+								"old":      "",
+							},
+							"timeouts.delete": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts.read": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"timeouts.update": {
+								"computed": false,
+								"new":      "40m",
+								"old":      "",
+							},
+							"tpu_ipv4_cidr_block": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"vertical_pod_autoscaling.#": {
+								"computed": false,
+								"new":      "0",
+								"old":      "",
+							},
+							"workload_identity_config.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"workload_identity_config.0.%": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"workload_identity_config.0.workload_pool": {
+								"computed": false,
+								"new":      "abc.svc.id.goog",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+		},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.1.0"
+
+variables = {}
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources
