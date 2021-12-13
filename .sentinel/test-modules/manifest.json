@@ -1,6 +1,12 @@
 {
 	"records": [
 		{
+			"key": "test/gke-policy-workload/gke-workload-policy-null/tfplan-functions",
+			"source": "../../tfplan-functions.sentinel",
+			"sourceSum": "",
+			"dest": "/home/rajeevghosh/wells-13DEC/gke-workload/tfplan-functions.sentinel"
+		},
+		{
 			"key": "test/gke-policy-workload/gke-workload-policy-fail/tfplan-functions",
 			"source": "../../tfplan-functions.sentinel",
 			"sourceSum": "",
