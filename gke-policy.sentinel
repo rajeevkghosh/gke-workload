@@ -13,80 +13,51 @@ import "types"
 
 # Get all GKE Instances
 allGkeInstances = plan.find_resources("google_container_cluster")
+datasource = tfplan.raw.prior_state.values.root_module.resources
+is_null_datasource = rule { types.type_of(datasource) == "undefined" }
 
-violations_release_channel = {}
+workload_pool_var = ""
+if not is_null_datasource {
+projects  = filter tfplan.raw.prior_state.values.root_module.resources as _, rc {
+   rc.type is "google_project" 
+}
+
+project_id=""
+for projects as address, rc {
+    project_id = plan.evaluate_attribute(rc, "values.project_id")
+	print(project_id)
+}
+
+workload_pool_var = plan.to_string(project_id)+".svc.id.goog"
+}
+print("workload_pool_var==>"+plan.to_string(workload_pool_var))
+
+violations_workload_pool = {}
 for allGkeInstances as address, rc {
 
-	#release_channel = plan.evaluate_attribute(rc.change.after.release_channel[0],"channel")
-	release_channel = plan.evaluate_attribute(rc.change.after, "release_channel")
-	# print(release_channel[0]["channel"])
-	print(release_channel)
+	workload_pool = plan.evaluate_attribute(rc.change.after, "workload_identity_config")
+	print(workload_pool)
 
-	isnull_release_channel = rule { types.type_of(release_channel) == "null" }
-	print(isnull_release_channel)
-	if isnull_release_channel {
-		#print("release_channel can't be null")
+	isnull_workload_pool = rule { types.type_of(workload_pool) == "null" }
+	print(isnull_workload_pool)
+	if isnull_workload_pool {
         print("The value for  " + address + " Can't be Null ")
-		violations_release_channel[address] = rc
+		violations_workload_pool[address] = rc
 
 	} else {
-
-		if not (release_channel[0]["channel"] == "STABLE") {
-			#print("Only STABLE option is permissible for Release Channel")
-            print("The value for  " + address + " can only be STABLE")
-			violations_release_channel[address] = rc
+        if workload_pool_var == "" {
+			violations_workload_pool[address] = rc
+			print ("Please define data source for project resource type")
+		} else {
+		if not (workload_pool[0]["workload_pool"] == workload_pool_var) {
+            print("For the resource: "+ plan.to_string(address)+" The value for workload_identity_config.workload_pool can only be ${data.google_project.project.project_id}.svc.id.goog")
+			violations_workload_pool[address] = rc
 
 		}
 	}
-}
-
-GCP_GKE_RELEASECHANNEL = rule { length(violations_release_channel) is 0 }
-
-#######-----------------------------------------------------------##############
-#######-----------------------------------------------------------##############
-
-violations_dataplane = {}
-for allGkeInstances as address, rc {
-
-	dataplane = plan.evaluate_attribute(rc.change.after, "datapath_provider")
-	isnull_dataplane = rule { types.type_of(dataplane) == "null" }
-	print("Dataplane: " + plan.to_string(isnull_dataplane))
-
-	if isnull_dataplane {
-		violations_dataplane[address] = rc
-		#print("Dataplane value can't be Null")
-        print("The value for  " + address + " Can't be Null ")
-
-	} else {
-
-		if not (dataplane == "ADVANCED_DATAPATH") {
-			print("For Dataplane, only ADVANCED_DATAPATH value is supported")
-			violations_dataplane[address] = rc
-		}
 	}
-
 }
 
-GCP_GKE_DATAPLANEV2 = rule { length(violations_dataplane) is 0 }
+GCP_GKE_WORLOADIDENT = rule { length(violations_workload_pool) is 0 }
 
-######------------------------------------------------------------#######
-######------------------------------------------------------------#######
-
-violations_masterauth = {}
-for allGkeInstances as address, rc {
-
-	master_auth = plan.evaluate_attribute(rc.change.after, "master_authorized_networks_config")
-
-	isnull_master_auth = rule { types.type_of(master_auth) == "null" }
-
-	if isnull_master_auth {
-		violations_masterauth[address] = rc
-		print("master_authorized_networks_config value can't be Null")
-
-	}
-
-}
-
-GCP_GKE_MASTERAUTH = rule { length(violations_masterauth) is 0 }
-
-main = rule { GCP_GKE_RELEASECHANNEL and GCP_GKE_DATAPLANEV2 and GCP_GKE_MASTERAUTH }
+main = rule { GCP_GKE_WORLOADIDENT }
