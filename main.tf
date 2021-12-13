@@ -2,6 +2,11 @@ provider "google" {
   project = "airline1-sabre-wolverine"
   #credentials = file("../gke.json")
 }
+
+data "google_project" "project" {
+project_id = "airline1-sabre-wolverine"
+
+}
 resource "google_container_cluster" "primary" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
