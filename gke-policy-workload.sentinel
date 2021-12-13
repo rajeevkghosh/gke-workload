@@ -25,7 +25,7 @@ projects  = filter tfplan.raw.prior_state.values.root_module.resources as _, rc 
 project_id=""
 for projects as address, rc {
     project_id = plan.evaluate_attribute(rc, "values.project_id")
-	print(project_id)
+	#print(project_id)
 }
 
 workload_pool_var = plan.to_string(project_id)+".svc.id.goog"
@@ -39,7 +39,7 @@ for allGkeInstances as address, rc {
 	print(workload_pool)
 
 	isnull_workload_pool = rule { types.type_of(workload_pool) == "null" }
-	print(isnull_workload_pool)
+	#print(isnull_workload_pool)
 	if isnull_workload_pool {
         print("The value for  " + address + " Can't be Null ")
 		violations_workload_pool[address] = rc
@@ -47,7 +47,7 @@ for allGkeInstances as address, rc {
 	} else {
         if workload_pool_var == "" {
 			violations_workload_pool[address] = rc
-			print ("Please define data source for project resource type")
+			print ("For resource: "+address+" Please define data source for resource type: google_project")
 		} else {
 		if not (workload_pool[0]["workload_pool"] == workload_pool_var) {
             print("For the resource: "+ plan.to_string(address)+" The value for workload_identity_config.workload_pool can only be ${data.google_project.project.project_id}.svc.id.goog")

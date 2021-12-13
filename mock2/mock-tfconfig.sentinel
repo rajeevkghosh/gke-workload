@@ -1,0 +1,244 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {
+			"google_project": {
+				"project": {
+					"config": {
+						"project_id": "airline1-sabre-wolverine",
+					},
+					"provisioners": null,
+					"references": {
+						"project_id": [],
+					},
+				},
+			},
+		},
+		"modules": {},
+		"outputs": {},
+		"providers": {
+			"google": {
+				"alias": {
+					"": {
+						"config": {
+							"project": "airline1-sabre-wolverine",
+						},
+						"references": {
+							"project": [],
+						},
+						"version": "",
+					},
+				},
+				"config": {
+					"project": "airline1-sabre-wolverine",
+				},
+				"references": {
+					"project": [],
+				},
+				"version": "",
+			},
+		},
+		"resources": {
+			"google_container_cluster": {
+				"primary": {
+					"config": {
+						"datapath_provider":  "ADVANCED_DATAPATH",
+						"initial_node_count": 3,
+						"ip_allocation_policy": [
+							{},
+						],
+						"location": "us-central1-a",
+						"master_authorized_networks_config": [
+							{
+								"cidr_blocks": [
+									{
+										"cidr_block": "192.168.10.35/32",
+									},
+								],
+							},
+						],
+						"name": "marcellus-wallace",
+						"node_config": [
+							{
+								"labels": {
+									"foo": "bar",
+								},
+								"oauth_scopes": [
+									"https://www.googleapis.com/auth/cloud-platform",
+								],
+								"tags": [
+									"foo",
+									"bar",
+								],
+							},
+						],
+						"release_channel": [
+							{
+								"channel": "STABLE",
+							},
+						],
+						"timeouts": null,
+						"workload_identity_config": [
+							{},
+						],
+					},
+					"provisioners": null,
+					"references": {
+						"datapath_provider":  [],
+						"initial_node_count": [],
+						"ip_allocation_policy": [
+							{},
+						],
+						"location": [],
+						"master_authorized_networks_config": [
+							{
+								"cidr_blocks": [
+									{
+										"cidr_block": [],
+									},
+								],
+							},
+						],
+						"name": [],
+						"node_config": [
+							{
+								"labels":       [],
+								"oauth_scopes": [],
+								"tags":         [],
+							},
+						],
+						"release_channel": [
+							{
+								"channel": [],
+							},
+						],
+						"timeouts": [],
+						"workload_identity_config": [
+							{
+								"workload_pool": [
+									"data.google_project.project.project_id",
+									"data.google_project.project",
+								],
+							},
+						],
+					},
+				},
+				"primary1": {
+					"config": {
+						"datapath_provider":  "ADVANCED_DATAPATH",
+						"initial_node_count": 3,
+						"ip_allocation_policy": [
+							{},
+						],
+						"location": "us-central1-a",
+						"master_authorized_networks_config": [
+							{
+								"cidr_blocks": [
+									{
+										"cidr_block": "192.168.10.35/32",
+									},
+								],
+							},
+						],
+						"name": "test-cluster",
+						"node_config": [
+							{
+								"labels": {
+									"foo": "bar",
+								},
+								"oauth_scopes": [
+									"https://www.googleapis.com/auth/cloud-platform",
+								],
+								"tags": [
+									"foo",
+									"bar",
+								],
+							},
+						],
+						"release_channel": [
+							{
+								"channel": "STABLE",
+							},
+						],
+						"timeouts": null,
+						"workload_identity_config": [
+							{},
+						],
+					},
+					"provisioners": null,
+					"references": {
+						"datapath_provider":  [],
+						"initial_node_count": [],
+						"ip_allocation_policy": [
+							{},
+						],
+						"location": [],
+						"master_authorized_networks_config": [
+							{
+								"cidr_blocks": [
+									{
+										"cidr_block": [],
+									},
+								],
+							},
+						],
+						"name": [],
+						"node_config": [
+							{
+								"labels":       [],
+								"oauth_scopes": [],
+								"tags":         [],
+							},
+						],
+						"release_channel": [
+							{
+								"channel": [],
+							},
+						],
+						"timeouts": [],
+						"workload_identity_config": [
+							{
+								"workload_pool": [
+									"data.google_project.project.project_id",
+									"data.google_project.project",
+								],
+							},
+						],
+					},
+				},
+			},
+		},
+		"variables": {},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+modules = _modules.root.modules
+providers = _modules.root.providers
+resources = _modules.root.resources
+variables = _modules.root.variables
+outputs = _modules.root.outputs
